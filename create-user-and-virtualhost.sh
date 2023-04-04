@@ -60,5 +60,7 @@ echo "</VirtualHost>" | sudo tee -a /etc/apache2/sites-available/$domain.conf
 # Habilitamos el sitio
 sudo a2ensite $domain.conf
 
+sudo semanage fcontext -a -t httpd_sys_content_t "/home/$username/www/$domain(/.*)?" ? echo "Success SELinux" : echo "Error SELinux"
+
 # Reiniciamos Apache2
 sudo systemctl restart apache2
